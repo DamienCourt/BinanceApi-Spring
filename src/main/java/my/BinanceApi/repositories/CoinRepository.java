@@ -13,5 +13,6 @@ public interface CoinRepository extends CrudRepository<Coin, Long> {
     @Override
     @Nonnull
     List<Coin> findAll();
-    List<Coin> getCoinsByName(String name);
+    List<Coin> findByName(String name);
+
 }

@@ -21,13 +21,15 @@ public class CoinServiceImpl implements CoinService{
         return coinRepository.findAll();
     }
 
-
-
-
     @Override
     public List<Coin> getCoinsByName(String name) {
-        return List.of();
+        return coinRepository.findByName(name);
     }
+
+
+
+
+
 
     @Override
     public Coin getCoinById(long id) {
