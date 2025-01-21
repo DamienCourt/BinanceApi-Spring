@@ -5,6 +5,7 @@ import my.BinanceApi.repositories.CoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CoinServiceImpl implements CoinService{
@@ -26,23 +27,23 @@ public class CoinServiceImpl implements CoinService{
         return coinRepository.findByName(name);
     }
 
-
-
-
-
-
     @Override
-    public Coin getCoinById(long id) {
-        return null;
-    }
-
-    @Override
-    public Coin saveCoin(Coin coin) {
-        return null;
+    public Optional<Coin> getCoinById(long id) {
+        return coinRepository.findById(id);
     }
 
     @Override
     public void removeCoin(long id) {
-
+        coinRepository.deleteById(id);
     }
+
+
+
+    @Override
+    public Coin saveCoin(Coin coin) {
+
+        return coinRepository.save(coin);
+    }
+
+
 }
