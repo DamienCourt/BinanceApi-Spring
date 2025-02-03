@@ -9,6 +9,7 @@ import lombok.Data;
 @Table(name = "coins")
 public class Coin {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
