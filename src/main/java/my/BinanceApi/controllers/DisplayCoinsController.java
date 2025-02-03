@@ -26,6 +26,7 @@ public class DisplayCoinsController {
 
     @GetMapping(value = "/name/{name}")
     public List<Coin> listCoinsByName(@PathVariable String name){
+        System.out.println(name);
         return coinService.getCoinsByName(name);
     }
 

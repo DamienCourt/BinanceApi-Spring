@@ -1,9 +1,8 @@
 package my.BinanceApi.models;
 
+import java.math.BigDecimal;
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.math.BigDecimal;
 
 @Data
 @Entity
@@ -14,16 +13,16 @@ public class Coin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "coin_name")
+    @Column(name = "coin_name", nullable = false )
     private String name;
 
-    @Column(name = "coin_amount")
+    @Column(name = "coin_amount", nullable = false)
     private BigDecimal amount;
 
-    @Column(name = "coin_price")
+    @Column(name = "coin_price", nullable = false)
     private BigDecimal purchasePrice;
 
-    @Column(name = "purchase_value")
+    @Column(name = "purchase_value", nullable = false)
     private BigDecimal purchaseValue;
 
 
