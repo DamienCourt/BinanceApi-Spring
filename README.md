@@ -1,2 +1,4 @@
-# BinanceApi
-Provides summary of previous transactions and purchases and the value of current open positions
+login key: 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
+
+TODO
+: add purchase date to database
