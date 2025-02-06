@@ -1,6 +1,7 @@
 package my.BinanceApi.models;
 
 import java.math.BigDecimal;
+import java.sql.Date;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,7 +9,6 @@ import lombok.Data;
 @Entity
 @Table(name = "coins")
 public class Coin {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +25,9 @@ public class Coin {
 
     @Column(name = "purchase_value", nullable = false)
     private BigDecimal purchaseValue;
+
+    @Column(name = "date")
+    private Date date;
 
 
 }
