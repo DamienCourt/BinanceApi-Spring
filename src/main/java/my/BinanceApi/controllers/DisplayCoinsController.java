@@ -2,10 +2,8 @@ package my.BinanceApi.controllers;
 
 import my.BinanceApi.models.Coin;
 import my.BinanceApi.services.CoinService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +16,7 @@ public class DisplayCoinsController {
     public DisplayCoinsController(CoinService coinService) {
         this.coinService = coinService;
     }
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping(value = "/all")
     public List<Coin> listAllCoins(){
         return coinService.getAllCoins();
@@ -26,7 +24,6 @@ public class DisplayCoinsController {
 
     @GetMapping(value = "/name/{name}")
     public List<Coin> listCoinsByName(@PathVariable String name){
-        System.out.println(name);
         return coinService.getCoinsByName(name);
     }
 
