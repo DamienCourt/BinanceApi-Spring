@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/panel")
+@CrossOrigin(origins = "http://localhost:5173")
 public class DisplayCoinsController {
 
     private final CoinService coinService;
@@ -16,7 +17,7 @@ public class DisplayCoinsController {
     public DisplayCoinsController(CoinService coinService) {
         this.coinService = coinService;
     }
-    @CrossOrigin(origins = "http://localhost:5173")
+
     @GetMapping(value = "/all")
     public List<Coin> listAllCoins(){
         return coinService.getAllCoins();

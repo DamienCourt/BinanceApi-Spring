@@ -41,8 +41,15 @@ public class CoinServiceImpl implements CoinService{
 
     @Override
     public Coin saveCoin(Coin coin) {
+        Coin newEntry = new Coin();
+        newEntry.setName(coin.getName().toUpperCase());
+        newEntry.setAmount(coin.getAmount());
+        newEntry.setPurchaseValue(coin.getPurchaseValue());
+        newEntry.setPurchasePrice(coin.getPurchasePrice());
+        newEntry.setDate(coin.getDate());
+        System.out.println(newEntry);
 
-        return coinRepository.save(coin);
+        return coinRepository.save(newEntry);
     }
 
 
