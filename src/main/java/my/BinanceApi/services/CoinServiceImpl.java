@@ -21,6 +21,10 @@ public class CoinServiceImpl implements CoinService{
     public List<Coin> getAllCoins() {
         return coinRepository.findAll();
     }
+    @Override
+    public List<Coin> getAllCoinsSorted(){
+        return coinRepository.findAllByOrderByName();
+    }
 
     @Override
     public List<Coin> getCoinsByName(String name) {
@@ -37,8 +41,6 @@ public class CoinServiceImpl implements CoinService{
         coinRepository.deleteById(id);
     }
 
-
-
     @Override
     public Coin saveCoin(Coin coin) {
         Coin newEntry = new Coin();
@@ -51,6 +53,5 @@ public class CoinServiceImpl implements CoinService{
 
         return coinRepository.save(newEntry);
     }
-
 
 }

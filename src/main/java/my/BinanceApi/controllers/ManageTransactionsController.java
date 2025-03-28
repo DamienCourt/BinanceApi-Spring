@@ -4,10 +4,7 @@ import my.BinanceApi.models.Coin;
 import my.BinanceApi.services.CoinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/panel")
@@ -20,9 +17,15 @@ public class ManageTransactionsController {
         this.coinService = coinService;
     }
 
-    @PostMapping("/form")
-    public void savecoin(@RequestBody Coin coin){
-        System.out.println(coin);
-        coinService.saveCoin(coin);
+    @PostMapping("/submitForm")
+    @ResponseBody
+    public long saveTransaction(@RequestBody Coin coin){
+        Coin response = coinService.saveCoin(coin);
+        return response.getId();
+    }
+
+    @PostMapping("/remove/{id}")
+    public void removeTransaction(@PathVariable long id){
+        coinService.removeCoin(id);
     }
 }
