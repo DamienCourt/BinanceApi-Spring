@@ -1,6 +1,6 @@
 package my.BinanceApi.controllers;
 
-import my.BinanceApi.services.CoinService;
+import my.BinanceApi.services.BinanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/refresh")
 @CrossOrigin
 public class BinanceController {
-    private final CoinService coinService;
+    private final BinanceService binanceService;
 
     @Autowired
-    public BinanceController(CoinService coinService){
-        this.coinService = coinService;
+    public BinanceController(BinanceService binanceService){
+        this.binanceService = binanceService;
     }
 
     @PostMapping("/data")
     public void loadTransactions(){
-        coinService.getAllCoins();
-        System.out.println("load");
+        binanceService.getAllBinanceTransactions();
+
     }
 
 }
