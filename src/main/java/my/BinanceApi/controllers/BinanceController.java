@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.IOException;
+
 @Controller
 @RequestMapping("/refresh")
 @CrossOrigin
@@ -19,8 +21,9 @@ public class BinanceController {
     }
 
     @PostMapping("/data")
-    public void loadTransactions(){
-        binanceService.getAllBinanceTransactions();
+    public void loadTransactions() throws IOException {
+        String data = binanceService.getMarketData("/api/v3/avgPrice","BTCUSDT" );
+        System.out.println(data);
 
     }
 
