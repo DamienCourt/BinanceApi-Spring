@@ -53,20 +53,20 @@ public class BinanceServiceImpl implements BinanceService{
 
     @Override
     public String getAccountInfo(String endpoint){
-
         String timestamp = String.valueOf(System.currentTimeMillis());
-        String signature = BinanceSignature.generateSignature(timestamp,getSecretApiKey(apiKeyId));
-        //String url = "https://api.binance.com/api/v3/order?" + queryString + "&signature=" + signature;
-        String altUrl = "https://testnet.binance.vision/api/v3/account";
-        //String url = "https://api.binance.com/api/v3/account?timestamp=" + timestamp;
+        String timestampUrl = "timestamp=" + timestamp;
+
+        String signature = BinanceSignature.generateSignature(timestampUrl, getSecretApiKey(apiKeyId));
+        String url = baseUrl + endpoint + "?timestamp="+timestamp+"&signature="+signature;
 
         Request request = new Request.Builder()
-                .url("https://testnet.binance.vision/api/v3/account&timestamp"+timestamp)
+                .url("https://testnet.binance.vision/api/v3/account"+"?timestamp="+timestamp+"&signature="+signature)
                 .header("X-MBX-APIKEY",getPublicApiKey(apiKeyId))
                 .build();
+        System.out.println(request.url());
 
         try (Response response = okHttpClient.newCall(request).execute()){
-            return response.body().toString();
+            return response.body().string();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

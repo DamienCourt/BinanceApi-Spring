@@ -2,6 +2,7 @@ package my.BinanceApi.controllers;
 
 import my.BinanceApi.services.BinanceService;
 import my.BinanceApi.utils.BinanceSignature;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +27,8 @@ public class BinanceController {
     public void loadTransactions() throws IOException {
 
         //String data = binanceService.getMarketData("/api/v3/avgPrice","BTCUSDT" );
-
+        String response = binanceService.getAccountInfo("/api/v3/account");
+        System.out.println(response);
     }
 
 }
