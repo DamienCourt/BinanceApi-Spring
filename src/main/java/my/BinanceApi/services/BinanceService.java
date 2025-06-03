@@ -8,5 +8,6 @@ public interface BinanceService {
     public String getSecretApiKey(long id);
 
     public String getAccountInfo(String endpoint);
-    public String getMarketData(String endpoint, String symbol)throws IOException;
+    public String getMarketData(String endpoint, String symbol) throws IOException;
+    public String getOpenOrders(String endpoint, String symbol) throws IOException;
 }

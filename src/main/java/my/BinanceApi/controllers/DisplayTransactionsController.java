@@ -24,7 +24,6 @@ public class DisplayTransactionsController {
 
     @GetMapping(value = "/name/{name}")
     public List<Coin> listCoinsByName(@PathVariable String name){
-        System.out.println(coinService.getCoinsByName(name));
         return coinService.getCoinsByName(name);
     }
 

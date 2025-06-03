@@ -1,20 +1,13 @@
 package my.BinanceApi.controllers;
 
 import my.BinanceApi.services.BinanceService;
-import my.BinanceApi.utils.BinanceSignature;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
-@Controller
+@RestController
 @RequestMapping("/refresh")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:5173")
 public class BinanceController {
     private final BinanceService binanceService;
 
@@ -24,11 +17,19 @@ public class BinanceController {
     }
 
     @PostMapping("/data")
-    public void loadTransactions() throws IOException {
-
-        //String data = binanceService.getMarketData("/api/v3/avgPrice","BTCUSDT" );
-        String response = binanceService.getAccountInfo("/api/v3/account");
-        System.out.println(response);
+    public String loadTransactions() throws IOException {
+        return binanceService.getMarketData("/api/v3/avgPrice","BTCUSDT");
     }
+
+    @PostMapping("/account")
+    public String getAccountInfo(){
+        return binanceService.getAccountInfo("/api/v3/account");
+    }
+
+    @PostMapping("/orders")
+    public String getOpenOrders() throws IOException {
+        return binanceService.getOpenOrders("api/v3/openOrders","BTCUSDT");
+    }
+
 
 }
